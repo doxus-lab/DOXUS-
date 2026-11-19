@@ -143,6 +143,31 @@
         linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
     }
+
+    /* Subtle Scroll Reveal Animations for Card Groups */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s ease,
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.3s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal-card.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body class="bg-pageBg text-textMain selection:bg-doxusYellow selection:text-black">
@@ -222,9 +247,9 @@
       <!-- Subtle radial vignette -->
       <div class="absolute inset-0 bg-gradient-to-b from-doxusBlue/20 via-transparent to-doxusBlue/90 pointer-events-none"></div>
 
-      <div class="relative max-w-5xl mx-auto px-5 sm:px-8 pt-20 pb-20 sm:pt-28 sm:pb-28">
+      <div class="relative max-w-5xl mx-auto px-5 sm:px-8 pt-20 pb-20 sm:pt-28 sm:pb-28" data-reveal-group>
         <!-- Eyebrow -->
-        <div class="inline-flex items-center gap-2.5 mb-7">
+        <div class="reveal-card inline-flex items-center gap-2.5 mb-7">
           <span class="w-6 h-[2px] bg-doxusYellow"></span>
           <span class="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-doxusYellow">
             Estudio Legal
@@ -232,17 +257,17 @@
         </div>
 
         <!-- Main Headline -->
-        <h1 class="font-serif text-4xl sm:text-6xl lg:text-[64px] font-medium text-white tracking-[-0.015em] leading-[1.08] max-w-4xl">
+        <h1 class="reveal-card font-serif text-4xl sm:text-6xl lg:text-[64px] font-medium text-white tracking-[-0.015em] leading-[1.08] max-w-4xl">
           Criterio técnico en asesoría legal inmobiliaria, fiduciaria y mitigación de riesgos operativos.
         </h1>
 
         <!-- Brief Executive Subtitle -->
-        <p class="mt-7 text-base sm:text-lg text-textDarkMuted font-light leading-relaxed max-w-2xl">
+        <p class="reveal-card mt-7 text-base sm:text-lg text-textDarkMuted font-light leading-relaxed max-w-2xl">
           Dictámenes claros, arquitectura fiduciaria y gobernanza patrimonial lícita respaldados por práctica profesional interna en banca fiduciaria.
         </p>
 
         <!-- Primary & Secondary CTAs -->
-        <div class="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+        <div class="reveal-card mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
           <button 
             type="button"
             data-open-modal="Solicitar Diagnóstico Técnico"
@@ -259,7 +284,7 @@
         </div>
 
         <!-- 3 Micro-Badges Pillars -->
-        <div class="mt-16 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div class="reveal-card mt-16 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           <div class="flex items-center gap-3">
             <span class="w-2 h-2 rounded-full bg-doxusYellow shrink-0"></span>
             <span class="text-xs sm:text-[13px] font-medium tracking-wide text-white">
@@ -289,29 +314,31 @@
       <div class="max-w-5xl mx-auto px-5 sm:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <!-- Columna Izquierda: Título -->
-          <div class="lg:col-span-5">
-            <div class="inline-flex items-center gap-2 mb-2.5">
+          <div class="lg:col-span-5" data-reveal-group>
+            <div class="reveal-card inline-flex items-center gap-2 mb-2.5">
               <span class="w-2 h-2 bg-doxusYellow"></span>
               <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
                 Identidad
               </span>
             </div>
-            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-doxusBlue leading-tight">
+            <h2 class="reveal-card font-serif text-3xl sm:text-4xl font-semibold text-doxusBlue leading-tight">
               Quiénes Somos
             </h2>
-            <p class="mt-3 text-xs sm:text-sm text-textMuted leading-relaxed">
+            <p class="reveal-card mt-3 text-xs sm:text-sm text-textMuted leading-relaxed">
               Rigor jurídico especializado en operaciones inmobiliarias, corporativas y fiduciarias.
             </p>
           </div>
 
           <!-- Columna Derecha: Síntesis Ejecutiva y 3 Diferenciadores -->
           <div class="lg:col-span-7 space-y-6">
-            <p class="text-base sm:text-lg text-textMain leading-relaxed font-normal">
-              <strong class="font-semibold text-doxusBlue">DOXUS</strong> es un estudio legal especializado en derecho inmobiliario, fiduciario y gobernanza patrimonial. Integramos el criterio técnico adquirido tras nuestra trayectoria interna en banca fiduciaria, desarrolladoras inmobiliarias y notaría pública para traducir riesgos operativos en dictámenes claros y estructuras ejecutables.
-            </p>
+            <div data-reveal-group>
+              <p class="reveal-card text-base sm:text-lg text-textMain leading-relaxed font-normal">
+                <strong class="font-semibold text-doxusBlue">DOXUS</strong> es un estudio legal especializado en derecho inmobiliario, fiduciario y gobernanza patrimonial. Integramos el criterio técnico adquirido tras nuestra trayectoria interna en banca fiduciaria, desarrolladoras inmobiliarias y notaría pública para traducir riesgos operativos en dictámenes claros y estructuras ejecutables.
+              </p>
+            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
-              <div class="p-4 bg-pageBg border border-structBorder rounded-lg">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2" data-reveal-group>
+              <div class="reveal-card p-4 bg-pageBg border border-structBorder rounded-lg">
                 <span class="block w-5 h-[2px] bg-doxusYellow mb-2.5"></span>
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-doxusBlue">
                   Experiencia Integral
@@ -321,7 +348,7 @@
                 </p>
               </div>
 
-              <div class="p-4 bg-pageBg border border-structBorder rounded-lg">
+              <div class="reveal-card p-4 bg-pageBg border border-structBorder rounded-lg">
                 <span class="block w-5 h-[2px] bg-doxusYellow mb-2.5"></span>
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-doxusBlue">
                   Criterio Preventivo
@@ -331,7 +358,7 @@
                 </p>
               </div>
 
-              <div class="p-4 bg-pageBg border border-structBorder rounded-lg">
+              <div class="reveal-card p-4 bg-pageBg border border-structBorder rounded-lg">
                 <span class="block w-5 h-[2px] bg-doxusYellow mb-2.5"></span>
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-doxusBlue">
                   Atención Directa
@@ -352,8 +379,8 @@
     <section id="practica" class="py-20 sm:py-28 bg-pageBg border-b border-structBorder">
       <div class="max-w-5xl mx-auto px-5 sm:px-8">
         <!-- Section Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-          <div>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12" data-reveal-group>
+          <div class="reveal-card">
             <div class="inline-flex items-center gap-2 mb-2.5">
               <span class="w-2 h-2 bg-doxusYellow"></span>
               <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
@@ -364,15 +391,15 @@
               Áreas de Práctica
             </h2>
           </div>
-          <p class="text-xs sm:text-sm text-textMuted">
+          <p class="reveal-card text-xs sm:text-sm text-textMuted">
             Seleccione una tarjeta para desplegar el alcance técnico.
           </p>
         </div>
 
         <!-- Expandable Cards Stack -->
-        <div class="space-y-3.5" role="list">
+        <div class="space-y-3.5" role="list" data-reveal-group>
           <!-- Card 01 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -418,7 +445,7 @@
           </article>
 
           <!-- Card 02 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -464,7 +491,7 @@
           </article>
 
           <!-- Card 03 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -510,7 +537,7 @@
           </article>
 
           <!-- Card 04 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -564,8 +591,8 @@
     <section id="sectores" class="py-20 sm:py-28 bg-techGray border-b border-structBorder">
       <div class="max-w-5xl mx-auto px-5 sm:px-8">
         <!-- Section Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-          <div>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12" data-reveal-group>
+          <div class="reveal-card">
             <div class="inline-flex items-center gap-2 mb-2.5">
               <span class="w-2 h-2 bg-doxusYellow"></span>
               <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
@@ -576,15 +603,15 @@
               Sectores y Perfiles que Atendemos
             </h2>
           </div>
-          <p class="text-xs sm:text-sm text-textMuted">
+          <p class="reveal-card text-xs sm:text-sm text-textMuted">
             Enfoque técnico adaptado al rol de cada participante.
           </p>
         </div>
 
         <!-- 2-Column Responsive Grid of Expandable Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start" data-reveal-group>
           <!-- Sector 01 -->
-          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -618,7 +645,7 @@
           </article>
 
           <!-- Sector 02 -->
-          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -652,7 +679,7 @@
           </article>
 
           <!-- Sector 03 -->
-          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -686,7 +713,7 @@
           </article>
 
           <!-- Sector 04 -->
-          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -728,8 +755,8 @@
     <section id="metodologia" class="py-20 sm:py-28 bg-pageBg border-b border-structBorder">
       <div class="max-w-5xl mx-auto px-5 sm:px-8">
         <!-- Section Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-          <div>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12" data-reveal-group>
+          <div class="reveal-card">
             <div class="inline-flex items-center gap-2 mb-2.5">
               <span class="w-2 h-2 bg-doxusYellow"></span>
               <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
@@ -740,15 +767,15 @@
               Metodología de Intervención
             </h2>
           </div>
-          <p class="text-xs sm:text-sm text-textMuted">
+          <p class="reveal-card text-xs sm:text-sm text-textMuted">
             Rigor senior combinado con trazabilidad operativa.
           </p>
         </div>
 
         <!-- Expandable Methodology Cards -->
-        <div class="space-y-3.5">
+        <div class="space-y-3.5" data-reveal-group>
           <!-- Step 01 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -784,7 +811,7 @@
           </article>
 
           <!-- Step 02 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -820,7 +847,7 @@
           </article>
 
           <!-- Step 03 -->
-          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+          <article class="reveal-card accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
             <button 
               type="button" 
               aria-expanded="false"
@@ -862,22 +889,22 @@
          SECCIÓN CIERRE / CTA EJECUTIVO
     ========================================================== -->
     <section class="py-24 sm:py-32 bg-techGray">
-      <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
-        <div class="inline-flex items-center justify-center gap-2 mb-4">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center" data-reveal-group>
+        <div class="reveal-card inline-flex items-center justify-center gap-2 mb-4">
           <span class="w-2 h-2 bg-doxusYellow"></span>
           <span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-doxusBlue">
             Consulta Ejecutiva
           </span>
         </div>
-        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-doxusBlue leading-[1.14] max-w-2xl mx-auto">
+        <h2 class="reveal-card font-serif text-3xl sm:text-5xl font-semibold text-doxusBlue leading-[1.14] max-w-2xl mx-auto">
           Tome decisiones patrimoniales e inmobiliarias con claridad técnica.
         </h2>
 
-        <div class="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+        <div class="reveal-card mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
           <button 
             type="button"
             data-open-modal="Solicitar Diagnóstico Técnico"
-            data-modal-tab="form"
+            data-modal-tab="gform"
             class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide text-white bg-doxusBlue hover:bg-doxusBlueHover rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-doxusBlue/40">
             Solicitar Diagnóstico Técnico
           </button>
@@ -944,7 +971,7 @@
             role="tab"
             id="tab-btn-form"
             aria-selected="true"
-            data-switch-tab="form"
+            data-switch-tab="gform"
             class="py-2 px-3 text-xs font-semibold rounded-md bg-white text-doxusBlue shadow-xs transition-all">
             Solicitud Escrita
           </button>
@@ -961,7 +988,7 @@
       </div>
 
       <!-- Modal Body: Google Form Embed View (Desplegable en la misma página) -->
-      <div id="modal-gform-view" class="hidden p-4 sm:p-6 bg-white">
+      <div id="modal-gform-view" class="p-4 sm:p-6 bg-white">
         <div class="w-full h-[460px] sm:h-[520px] rounded-lg border border-structBorder overflow-hidden bg-techGray flex flex-col items-center justify-center">
           <iframe 
             id="google-form-iframe"
@@ -980,77 +1007,6 @@
             Abrir en pestaña nueva &nearr;
           </a>
         </div>
-      </div>
-
-      <!-- Modal Body: Executive Form View -->
-      <div id="modal-form-view" class="p-6 sm:p-8 bg-white">
-        <form id="consultation-form" novalidate class="space-y-4">
-          <div>
-            <label for="client-name" class="block text-xs font-semibold uppercase tracking-wider text-doxusBlue mb-1.5">
-              Nombre Completo *
-            </label>
-            <input 
-              type="text" 
-              id="client-name" 
-              name="name"
-              required
-              placeholder="Ej. Arq. Alejandro Mendoza"
-              class="w-full px-3.5 py-2.5 text-sm text-textMain bg-techGray border border-structBorder rounded-md focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
-          </div>
-
-          <div>
-            <label for="client-company" class="block text-xs font-semibold uppercase tracking-wider text-doxusBlue mb-1.5">
-              Empresa o Proyecto *
-            </label>
-            <input 
-              type="text" 
-              id="client-company" 
-              name="company"
-              required
-              placeholder="Ej. Grupo Desarrollador / Patrimonio Familiar"
-              class="w-full px-3.5 py-2.5 text-sm text-textMain bg-techGray border border-structBorder rounded-md focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
-          </div>
-
-          <div>
-            <label for="client-area" class="block text-xs font-semibold uppercase tracking-wider text-doxusBlue mb-1.5">
-              Área de Interés *
-            </label>
-            <select 
-              id="client-area" 
-              name="area"
-              class="w-full px-3.5 py-2.5 text-sm text-textMain bg-techGray border border-structBorder rounded-md focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
-              <option value="Dictámenes de Viabilidad y Riesgo Operativo">Dictámenes de Viabilidad y Riesgo Operativo</option>
-              <option value="Estructuración y Revisión Fiduciaria">Estructuración y Revisión Fiduciaria</option>
-              <option value="Gobernanza Corporativa y Discreción Patrimonial">Gobernanza Corporativa y Discreción Patrimonial</option>
-              <option value="Planeación Patrimonial y Activos Intangibles">Planeación Patrimonial y Activos Intangibles</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="client-contact" class="block text-xs font-semibold uppercase tracking-wider text-doxusBlue mb-1.5">
-              Correo Electrónico o Teléfono Directo *
-            </label>
-            <input 
-              type="text" 
-              id="client-contact" 
-              name="contact"
-              required
-              placeholder="correo@empresa.com / +52 (33) ..."
-              class="w-full px-3.5 py-2.5 text-sm text-textMain bg-techGray border border-structBorder rounded-md focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
-          </div>
-
-          <p id="form-error-msg" class="hidden text-xs font-medium text-alertRed">
-            Por favor complete todos los campos obligatorios marcados con *.
-          </p>
-
-          <div class="pt-2">
-            <button 
-              type="submit"
-              class="w-full py-3.5 px-6 text-xs font-semibold uppercase tracking-[0.15em] text-black bg-doxusYellow hover:bg-[#e5a800] rounded-md shadow-xs transition-colors">
-              Enviar Solicitud
-            </button>
-          </div>
-        </form>
       </div>
 
       <!-- Modal Body: Google Calendar Appointment Embed View -->
@@ -1207,48 +1163,18 @@
       const modal = document.getElementById('executive-modal');
       const modalPanelContainer = document.getElementById('modal-panel-container');
       const modalTitle = document.getElementById('modal-title');
-      const areaSelect = document.getElementById('client-area');
       const openModalBtns = document.querySelectorAll('[data-open-modal]');
       const closeModalBtn = document.getElementById('close-modal-btn');
-      const doneModalBtn = document.getElementById('done-modal-btn');
-      const formView = document.getElementById('modal-form-view');
       const gformView = document.getElementById('modal-gform-view');
       const calendarView = document.getElementById('modal-calendar-view');
-      const successView = document.getElementById('modal-success-view');
       const tabBtnForm = document.getElementById('tab-btn-form');
       const tabBtnCalendar = document.getElementById('tab-btn-calendar');
       const gformIframe = document.getElementById('google-form-iframe');
       const calendarIframe = document.getElementById('google-calendar-iframe');
       const calendarExternalLink = document.getElementById('google-calendar-external-link');
-      const form = document.getElementById('consultation-form');
-      const errorMsg = document.getElementById('form-error-msg');
-      const confirmationSummary = document.getElementById('confirmation-summary');
 
       function switchModalTab(tabName) {
-        successView.classList.add('hidden');
-        if (tabName === 'gform') {
-          formView.classList.add('hidden');
-          calendarView.classList.add('hidden');
-          gformView.classList.remove('hidden');
-          modalPanelContainer.classList.remove('max-w-lg');
-          modalPanelContainer.classList.add('max-w-3xl');
-
-          tabBtnForm.classList.add('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
-          tabBtnForm.classList.remove('text-textMuted', 'font-medium');
-          tabBtnForm.setAttribute('aria-selected', 'true');
-
-          tabBtnCalendar.classList.remove('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
-          tabBtnCalendar.classList.add('text-textMuted', 'font-medium');
-          tabBtnCalendar.setAttribute('aria-selected', 'false');
-
-          if (gformIframe) {
-            const gformUrl = gformIframe.getAttribute('data-form-url');
-            if (gformUrl && gformIframe.getAttribute('src') === 'about:blank') {
-              gformIframe.setAttribute('src', gformUrl);
-            }
-          }
-        } else if (tabName === 'calendar') {
-          formView.classList.add('hidden');
+        if (tabName === 'calendar') {
           gformView.classList.add('hidden');
           calendarView.classList.remove('hidden');
           modalPanelContainer.classList.remove('max-w-lg');
@@ -1274,10 +1200,9 @@
           }
         } else {
           calendarView.classList.add('hidden');
-          gformView.classList.add('hidden');
-          formView.classList.remove('hidden');
-          modalPanelContainer.classList.remove('max-w-3xl');
-          modalPanelContainer.classList.add('max-w-lg');
+          gformView.classList.remove('hidden');
+          modalPanelContainer.classList.remove('max-w-lg');
+          modalPanelContainer.classList.add('max-w-3xl');
 
           tabBtnForm.classList.add('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
           tabBtnForm.classList.remove('text-textMuted', 'font-medium');
@@ -1286,31 +1211,27 @@
           tabBtnCalendar.classList.remove('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
           tabBtnCalendar.classList.add('text-textMuted', 'font-medium');
           tabBtnCalendar.setAttribute('aria-selected', 'false');
+
+          if (gformIframe) {
+            const gformUrl = gformIframe.getAttribute('data-form-url');
+            if (gformUrl && gformIframe.getAttribute('src') === 'about:blank') {
+              gformIframe.setAttribute('src', gformUrl);
+            }
+          }
         }
       }
 
-      tabBtnForm.addEventListener('click', () => switchModalTab('form'));
+      tabBtnForm.addEventListener('click', () => switchModalTab('gform'));
       tabBtnCalendar.addEventListener('click', () => switchModalTab('calendar'));
 
-      function openModal(titleText, preselectedArea, initialTab = 'form') {
+      function openModal(titleText, initialTab = 'gform') {
         if (titleText) {
           modalTitle.textContent = titleText;
         }
-        if (preselectedArea && areaSelect) {
-          areaSelect.value = preselectedArea;
-        }
-        errorMsg.classList.add('hidden');
         switchModalTab(initialTab);
 
         modal.classList.add('is-visible');
         document.body.style.overflow = 'hidden';
-
-        if (initialTab === 'form') {
-          setTimeout(() => {
-            const nameInput = document.getElementById('client-name');
-            if (nameInput) nameInput.focus();
-          }, 120);
-        }
       }
 
       function closeModal() {
@@ -1321,14 +1242,12 @@
       openModalBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
           const title = btn.getAttribute('data-open-modal') || 'Solicitar Diagnóstico Técnico';
-          const area = btn.getAttribute('data-area') || '';
-          const tab = btn.getAttribute('data-modal-tab') || 'form';
-          openModal(title, area, tab);
+          const tab = btn.getAttribute('data-modal-tab') || 'gform';
+          openModal(title, tab);
         });
       });
 
       closeModalBtn.addEventListener('click', closeModal);
-      doneModalBtn.addEventListener('click', closeModal);
 
       // Close on backdrop click
       modal.addEventListener('click', (e) => {
@@ -1344,27 +1263,36 @@
         }
       });
 
-      // Form Submission & Executive Confirmation
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
+      // 4. Subtle Staggered Entrance Animations for Card Groups
+      const revealGroups = document.querySelectorAll('[data-reveal-group]');
 
-        const name = document.getElementById('client-name').value.trim();
-        const company = document.getElementById('client-company').value.trim();
-        const contact = document.getElementById('client-contact').value.trim();
-        const area = areaSelect.value;
+      if ('IntersectionObserver' in window && revealGroups.length > 0) {
+        const groupObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const cards = entry.target.querySelectorAll('.reveal-card');
+              cards.forEach((card, index) => {
+                card.style.transitionDelay = `${index * 95}ms`;
+                card.classList.add('is-revealed');
+                // Limpiar delay tras la entrada para no afectar el hover/acordeón
+                setTimeout(() => {
+                  card.style.transitionDelay = '0ms';
+                }, 750 + index * 95);
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -40px 0px'
+        });
 
-        if (!name || !company || !contact) {
-          errorMsg.classList.remove('hidden');
-          return;
-        }
-
-        errorMsg.classList.add('hidden');
-        confirmationSummary.textContent = `Estimado(a) ${name}, hemos recibido su solicitud de revisión en "${area}" para ${company}. Un especialista senior de DOXUS se pondrá en contacto a la brevedad.`;
-
-        formView.classList.add('hidden');
-        successView.classList.remove('hidden');
-        form.reset();
-      });
+        revealGroups.forEach((group) => groupObserver.observe(group));
+      } else {
+        document.querySelectorAll('.reveal-card').forEach((card) => {
+          card.classList.add('is-revealed');
+        });
+      }
     });
   </script>
 </body>
