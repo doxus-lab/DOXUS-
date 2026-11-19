@@ -147,9 +147,9 @@
     /* Subtle Scroll Reveal Animations for Card Groups */
     .reveal-card {
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                   border-color 0.3s ease,
                   box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
                   background-color 0.3s ease;
@@ -159,14 +159,6 @@
     .reveal-card.is-revealed {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .reveal-card {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
     }
   </style>
 </head>
@@ -1266,32 +1258,36 @@
       // 4. Subtle Staggered Entrance Animations for Card Groups
       const revealGroups = document.querySelectorAll('[data-reveal-group]');
 
+      function revealGroupElements(group, initialOffset = 0) {
+        if (group.dataset.revealed === 'true') return;
+        group.dataset.revealed = 'true';
+
+        const cards = group.querySelectorAll('.reveal-card');
+        cards.forEach((card, index) => {
+          const delay = initialOffset + index * 110;
+          setTimeout(() => {
+            card.classList.add('is-revealed');
+          }, delay);
+        });
+      }
+
       if ('IntersectionObserver' in window && revealGroups.length > 0) {
         const groupObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const cards = entry.target.querySelectorAll('.reveal-card');
-              cards.forEach((card, index) => {
-                card.style.transitionDelay = `${index * 95}ms`;
-                card.classList.add('is-revealed');
-                // Limpiar delay tras la entrada para no afectar el hover/acordeón
-                setTimeout(() => {
-                  card.style.transitionDelay = '0ms';
-                }, 750 + index * 95);
-              });
+              const isHero = entry.target.closest('section') === document.querySelector('main section');
+              revealGroupElements(entry.target, isHero ? 140 : 40);
               observer.unobserve(entry.target);
             }
           });
         }, {
-          threshold: 0.12,
-          rootMargin: '0px 0px -40px 0px'
+          threshold: 0.08,
+          rootMargin: '0px 0px -20px 0px'
         });
 
         revealGroups.forEach((group) => groupObserver.observe(group));
       } else {
-        document.querySelectorAll('.reveal-card').forEach((card) => {
-          card.classList.add('is-revealed');
-        });
+        revealGroups.forEach((group) => revealGroupElements(group, 100));
       }
     });
   </script>
