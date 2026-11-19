@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOXUS | Consultoría Fiduciaria, Corporativa &amp; Gobernanza Patrimonial</title>
+  <meta name="description" content="Estudio legal de alto rigor técnico especializado en dictámenes de viabilidad, mitigación de riesgo operativo, estructuración fiduciaria y gobernanza patrimonial lícita.">
+
+  <!-- Google Fonts: Cormorant Garamond (Editorial Serif) & Plus Jakarta Sans (Clean Geometric UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            doxusBlue: '#262a36',
+            doxusBlueHover: '#1a1d26',
+            doxusYellow: '#ffbc06',
+            pageBg: '#ffffff',
+            techGray: '#f8f9fa',
+            structBorder: '#e9ecef',
+            textMain: '#1f2937',
+            textMuted: '#6b7280',
+            textDarkMuted: '#9ca3af',
+            alertRed: '#dc2626',
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          transitionTimingFunction: {
+            'editorial': 'cubic-bezier(0.22, 1, 0.36, 1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Base Editorial Styling */
+    body {
+      background-color: #ffffff;
+      color: #1f2937;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Smooth Accordion Grid Technique (Zero layout jumps, ultra-responsive on mobile & desktop) */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .accordion-item[data-open="true"] .accordion-content {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion-inner {
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .accordion-item[data-open="true"] .accordion-inner {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.06s;
+    }
+
+    /* Plus / Cross Icon Micro-rotation */
+    .accordion-icon-v {
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+      transform-origin: center;
+    }
+
+    .accordion-item[data-open="true"] .accordion-icon-v {
+      transform: rotate(90deg);
+      opacity: 0;
+    }
+
+    .accordion-icon-wrap {
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .accordion-item[data-open="true"] .accordion-icon-wrap {
+      background-color: #262a36;
+      border-color: #262a36;
+      color: #ffbc06;
+    }
+
+    /* Subtle Card Elevation on Hover & Open */
+    .accordion-item {
+      transition: border-color 0.3s ease, box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+    }
+
+    .accordion-item:hover {
+      border-color: #cbd5e1;
+    }
+
+    .accordion-item[data-open="true"] {
+      border-color: #ffbc06;
+      background-color: #ffffff;
+      box-shadow: 0 12px 32px -12px rgba(38, 42, 54, 0.09);
+    }
+
+    /* Modal Backdrop & Dialog Transitions */
+    .modal-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-backdrop.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-panel {
+      opacity: 0;
+      transform: translateY(12px) scale(0.985);
+      transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .modal-backdrop.is-visible .modal-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Subtle Architectural Grid Background for Dark Hero */
+    .bg-hero-grid {
+      background-size: 64px 64px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-pageBg text-textMain selection:bg-doxusYellow selection:text-black">
+
+  <!-- =========================================================
+       NAVBAR MINIMALISTA STICKY (AZUL DOXUS + BORDE AMARILLO)
+  ========================================================== -->
+  <header class="sticky top-0 z-40 w-full bg-doxusBlue/95 backdrop-blur-md border-b-2 border-doxusYellow">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      <!-- Brand Identity con Logotipo Oficial + Fallback -->
+      <a href="#" class="group flex items-center gap-3.5 focus:outline-none">
+        <img 
+          src="logo-doxus-blanco.png" 
+          alt="DOXUS Consultoría Fiduciaria y Corporativa" 
+          class="h-10 sm:h-11 w-auto object-contain"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="display:none;" class="items-center gap-3.5">
+          <span class="w-9 h-9 rounded-md bg-doxusYellow text-black font-serif font-bold text-xl flex items-center justify-center shrink-0 tracking-normal shadow-xs">
+            D
+          </span>
+          <div class="flex flex-col">
+            <span class="font-serif text-2xl sm:text-[26px] font-semibold tracking-[0.14em] text-white leading-none">
+              DOXUS
+            </span>
+            <span class="text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-textDarkMuted mt-1 font-normal">
+              Consultoría Fiduciaria &amp; Corporativa
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav aria-label="Navegación Principal" class="hidden md:flex items-center space-x-8 text-sm font-normal text-white/85">
+        <a href="#nosotros" class="hover:text-doxusYellow transition-colors py-2">Nosotros</a>
+        <a href="#practica" class="hover:text-doxusYellow transition-colors py-2">Práctica</a>
+        <a href="#sectores" class="hover:text-doxusYellow transition-colors py-2">Sectores</a>
+        <a href="#metodologia" class="hover:text-doxusYellow transition-colors py-2">Metodología</a>
+      </nav>
+
+      <!-- Action Button & Mobile Menu Trigger -->
+      <div class="flex items-center gap-3">
+        <button 
+          type="button"
+          data-open-modal="Agendar Consulta"
+          class="inline-flex items-center justify-center px-4 sm:px-5 py-2.5 text-xs sm:text-[13px] font-semibold tracking-wide text-black bg-doxusYellow hover:bg-[#e5a800] rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-doxusYellow/50">
+          Agendar Consulta
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button 
+          id="mobile-menu-btn"
+          type="button" 
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          class="md:hidden p-2.5 rounded-md border border-white/15 bg-doxusBlueHover text-white hover:border-doxusYellow transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-nav" class="hidden md:hidden border-t border-white/10 bg-doxusBlueHover px-5 py-4 space-y-2">
+      <a href="#nosotros" class="mobile-nav-link block py-2.5 text-sm text-white hover:text-doxusYellow">Nosotros</a>
+      <a href="#practica" class="mobile-nav-link block py-2.5 text-sm text-white hover:text-doxusYellow">Práctica</a>
+      <a href="#sectores" class="mobile-nav-link block py-2.5 text-sm text-white hover:text-doxusYellow">Sectores</a>
+      <a href="#metodologia" class="mobile-nav-link block py-2.5 text-sm text-white hover:text-doxusYellow">Metodología</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         HERO SECTION EJECUTIVO (FONDO AZUL DOXUS #262a36)
+    ========================================================== -->
+    <section class="relative overflow-hidden bg-doxusBlue bg-hero-grid border-b border-structBorder">
+      <!-- Subtle radial vignette -->
+      <div class="absolute inset-0 bg-gradient-to-b from-doxusBlue/20 via-transparent to-doxusBlue/90 pointer-events-none"></div>
+
+      <div class="relative max-w-5xl mx-auto px-5 sm:px-8 pt-20 pb-20 sm:pt-28 sm:pb-28">
+        <!-- Eyebrow -->
+        <div class="inline-flex items-center gap-2.5 mb-7">
+          <span class="w-6 h-[2px] bg-doxusYellow"></span>
+          <span class="text-[11px] sm:text-xs font-medium uppercase tracking-[0.22em] text-doxusYellow">
+            Estudio Legal
+          </span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="font-serif text-4xl sm:text-6xl lg:text-[64px] font-medium text-white tracking-[-0.015em] leading-[1.08] max-w-4xl">
+          Criterio técnico en asesoría legal inmobiliaria, fiduciaria y mitigación de riesgos operativos.
+        </h1>
+
+        <!-- Brief Executive Subtitle -->
+        <p class="mt-7 text-base sm:text-lg text-textDarkMuted font-light leading-relaxed max-w-2xl">
+          Dictámenes claros, arquitectura fiduciaria y gobernanza patrimonial lícita respaldados por práctica profesional interna en banca fiduciaria.
+        </p>
+
+        <!-- Primary & Secondary CTAs -->
+        <div class="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <button 
+            type="button"
+            data-open-modal="Solicitar Diagnóstico Técnico"
+            class="inline-flex items-center justify-center px-7 py-3.5 text-sm font-semibold tracking-wide text-black bg-doxusYellow hover:bg-[#e5a800] rounded-md shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-doxusYellow/50">
+            Solicitar Diagnóstico Técnico
+          </button>
+
+          <a 
+            href="#practica" 
+            class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium text-white bg-white/5 hover:bg-white/10 border border-white/15 rounded-md transition-colors duration-200">
+            Explorar Práctica
+            <span class="ml-2 text-doxusYellow" aria-hidden="true">&darr;</span>
+          </a>
+        </div>
+
+        <!-- 3 Micro-Badges Pillars -->
+        <div class="mt-16 pt-8 border-t border-white/15 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-doxusYellow shrink-0"></span>
+            <span class="text-xs sm:text-[13px] font-medium tracking-wide text-white">
+              Dictámenes de Viabilidad
+            </span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-doxusYellow shrink-0"></span>
+            <span class="text-xs sm:text-[13px] font-medium tracking-wide text-white">
+              Criterio Bancario Fiduciario
+            </span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-doxusYellow shrink-0"></span>
+            <span class="text-xs sm:text-[13px] font-medium tracking-wide text-white">
+              Gobernanza y Discreción Lícita
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECCIÓN: QUIÉNES SOMOS (IDENTIDAD Y ENFOQUE DEL ESTUDIO)
+    ========================================================== -->
+    <section id="nosotros" class="py-16 sm:py-24 bg-techGray border-b border-structBorder">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <!-- Columna Izquierda: Título -->
+          <div class="lg:col-span-5">
+            <div class="inline-flex items-center gap-2 mb-2.5">
+              <span class="w-2 h-2 bg-doxusYellow"></span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
+                Identidad
+              </span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-doxusBlue leading-tight">
+              Quiénes Somos
+            </h2>
+            <p class="mt-3 text-xs sm:text-sm text-textMuted leading-relaxed">
+              Rigor jurídico especializado en operaciones inmobiliarias, corporativas y fiduciarias.
+            </p>
+          </div>
+
+          <!-- Columna Derecha: Síntesis Ejecutiva y 3 Diferenciadores -->
+          <div class="lg:col-span-7 space-y-6">
+            <p class="text-base sm:text-lg text-textMain leading-relaxed font-normal">
+              <strong class="font-semibold text-doxusBlue">DOXUS</strong> es un estudio legal especializado en derecho inmobiliario, fiduciario y gobernanza patrimonial. Integramos el criterio técnico adquirido tras nuestra trayectoria interna en banca fiduciaria, desarrolladoras inmobiliarias y notaría pública para traducir riesgos operativos en dictámenes claros y estructuras ejecutables.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+              <div class="p-4 bg-pageBg border border-structBorder rounded-lg">
+                <span class="block w-5 h-[2px] bg-doxusYellow mb-2.5"></span>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-doxusBlue">
+                  Experiencia Integral
+                </h3>
+                <p class="text-xs text-textMuted mt-1 leading-relaxed">
+                  Práctica previa en banca fiduciaria, sector inmobiliario y notaría pública.
+                </p>
+              </div>
+
+              <div class="p-4 bg-pageBg border border-structBorder rounded-lg">
+                <span class="block w-5 h-[2px] bg-doxusYellow mb-2.5"></span>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-doxusBlue">
+                  Criterio Preventivo
+                </h3>
+                <p class="text-xs text-textMuted mt-1 leading-relaxed">
+                  Detección temprana de contingencias antes de comprometer capital.
+                </p>
+              </div>
+
+              <div class="p-4 bg-pageBg border border-structBorder rounded-lg">
+                <span class="block w-5 h-[2px] bg-doxusYellow mb-2.5"></span>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-doxusBlue">
+                  Atención Directa
+                </h3>
+                <p class="text-xs text-textMuted mt-1 leading-relaxed">
+                  Interlocución senior respaldada por trazabilidad documental.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECCIÓN 1: ÁREAS DE PRÁCTICA (TARJETAS DINÁMICAS DESPLEGABLES)
+    ========================================================== -->
+    <section id="practica" class="py-20 sm:py-28 bg-pageBg border-b border-structBorder">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+          <div>
+            <div class="inline-flex items-center gap-2 mb-2.5">
+              <span class="w-2 h-2 bg-doxusYellow"></span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
+                01 / Especialización
+              </span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-doxusBlue">
+              Áreas de Práctica
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-textMuted">
+            Seleccione una tarjeta para desplegar el alcance técnico.
+          </p>
+        </div>
+
+        <!-- Expandable Cards Stack -->
+        <div class="space-y-3.5" role="list">
+          <!-- Card 01 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="practica-panel-1"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">01</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Dictámenes de Viabilidad y Mitigación de Riesgo Operativo
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Diagnóstico técnico previo antes de comprometer capital o firmar contratos clave.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="practica-panel-1" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Evaluación exhaustiva de contratos de obra, gerencia de obra, aportación de tierra y decisiones corporativas para detectar contingencias operativas y traducirlas en rutas de acción claras.
+                  </p>
+                  <div class="mt-4">
+                    <button 
+                      type="button"
+                      data-open-modal="Solicitar Diagnóstico Técnico"
+                      data-area="Dictámenes de Viabilidad y Riesgo Operativo"
+                      class="text-xs font-semibold uppercase tracking-[0.14em] text-doxusBlue hover:text-black inline-flex items-center gap-1.5 border-b-2 border-doxusYellow pb-0.5 transition-colors">
+                      Solicitar diagnóstico en esta área <span aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 02 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="practica-panel-2"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">02</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Estructuración y Revisión Fiduciaria
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Arquitectura documental alineada a estándares de dictaminación bancaria desde su origen.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="practica-panel-2" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Diseño y adecuación de fideicomisos inmobiliarios, de administración, garantía y fuente de pago. Nuestra práctica profesional previa dentro de instituciones bancarias agiliza la dictaminación fiduciaria y evita reprocesos operativos.
+                  </p>
+                  <div class="mt-4">
+                    <button 
+                      type="button"
+                      data-open-modal="Solicitar Diagnóstico Técnico"
+                      data-area="Estructuración y Revisión Fiduciaria"
+                      class="text-xs font-semibold uppercase tracking-[0.14em] text-doxusBlue hover:text-black inline-flex items-center gap-1.5 border-b-2 border-doxusYellow pb-0.5 transition-colors">
+                      Consultar estructuración fiduciaria <span aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 03 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="practica-panel-3"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">03</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Gobernanza Corporativa y Discreción Patrimonial
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Reglas claras de control y confidencialidad contractual en estricto apego a la ley.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="practica-panel-3" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Estructuración de vehículos fiduciarios y protocolos de decisión para socios e inversionistas que requieren orden operativo, continuidad y discreción lícita frente a terceros, cumpliendo normativas de transparencia y PLD.
+                  </p>
+                  <div class="mt-4">
+                    <button 
+                      type="button"
+                      data-open-modal="Solicitar Diagnóstico Técnico"
+                      data-area="Gobernanza Corporativa y Discreción Patrimonial"
+                      class="text-xs font-semibold uppercase tracking-[0.14em] text-doxusBlue hover:text-black inline-flex items-center gap-1.5 border-b-2 border-doxusYellow pb-0.5 transition-colors">
+                      Evaluar esquema de gobernanza <span aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 04 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="practica-panel-4"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">04</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Planeación Patrimonial y Activos Intangibles
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Ordenamiento sucesorio y resguardo de propiedad intelectual mediante red especializada.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="practica-panel-4" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Transición ordenada de activos patrimoniales y coordinación con especialistas aliados en propiedad intelectual para el registro y gestión de marcas y derechos de autor vinculados al proyecto.
+                  </p>
+                  <div class="mt-4">
+                    <button 
+                      type="button"
+                      data-open-modal="Solicitar Diagnóstico Técnico"
+                      data-area="Planeación Patrimonial y Activos Intangibles"
+                      class="text-xs font-semibold uppercase tracking-[0.14em] text-doxusBlue hover:text-black inline-flex items-center gap-1.5 border-b-2 border-doxusYellow pb-0.5 transition-colors">
+                      Consultar planeación patrimonial <span aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECCIÓN 2: SECTORES Y PERFILES QUE ATENDEMOS
+    ========================================================== -->
+    <section id="sectores" class="py-20 sm:py-28 bg-techGray border-b border-structBorder">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+          <div>
+            <div class="inline-flex items-center gap-2 mb-2.5">
+              <span class="w-2 h-2 bg-doxusYellow"></span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
+                02 / Interlocución
+              </span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-doxusBlue">
+              Sectores y Perfiles que Atendemos
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-textMuted">
+            Enfoque técnico adaptado al rol de cada participante.
+          </p>
+        </div>
+
+        <!-- 2-Column Responsive Grid of Expandable Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+          <!-- Sector 01 -->
+          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="sector-panel-1"
+              class="accordion-trigger w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="min-w-0">
+                <span class="inline-block px-2 py-0.5 rounded bg-techGray border border-structBorder font-serif text-xs text-doxusBlue font-semibold mb-2">01</span>
+                <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                  Desarrolladores Inmobiliarios
+                </h3>
+                <p class="text-xs sm:text-sm text-textMuted mt-1.5 line-clamp-1">
+                  Estructuración jurídica y fiduciaria para proyectos verticales, mixtos y reservas territoriales.
+                </p>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-techGray border border-structBorder flex items-center justify-center text-doxusBlue shrink-0 mt-1" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="sector-panel-1" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 border-t border-structBorder">
+                  <p class="text-sm text-textMain leading-relaxed pt-3">
+                    Mitigación de riesgos en esquemas de preventa, reglas de comité técnico, liberación de recursos y relación con fiduciarios.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sector 02 -->
+          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="sector-panel-2"
+              class="accordion-trigger w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="min-w-0">
+                <span class="inline-block px-2 py-0.5 rounded bg-techGray border border-structBorder font-serif text-xs text-doxusBlue font-semibold mb-2">02</span>
+                <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                  Contratistas y Gerencias de Obra
+                </h3>
+                <p class="text-xs sm:text-sm text-textMuted mt-1.5 line-clamp-1">
+                  Claridad contractual en alcances, estimaciones, penalizaciones y entrega de obra.
+                </p>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-techGray border border-structBorder flex items-center justify-center text-doxusBlue shrink-0 mt-1" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="sector-panel-2" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 border-t border-structBorder">
+                  <p class="text-sm text-textMain leading-relaxed pt-3">
+                    Revisión preventiva de contratos de construcción y gerencia para prevenir desviaciones operativas y controversias en ejecución.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sector 03 -->
+          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="sector-panel-3"
+              class="accordion-trigger w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="min-w-0">
+                <span class="inline-block px-2 py-0.5 rounded bg-techGray border border-structBorder font-serif text-xs text-doxusBlue font-semibold mb-2">03</span>
+                <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                  Aportantes de Tierra y Capital
+                </h3>
+                <p class="text-xs sm:text-sm text-textMuted mt-1.5 line-clamp-1">
+                  Certeza documental sobre contraprestaciones, hitos y derechos de reversión.
+                </p>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-techGray border border-structBorder flex items-center justify-center text-doxusBlue shrink-0 mt-1" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="sector-panel-3" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 border-t border-structBorder">
+                  <p class="text-sm text-textMain leading-relaxed pt-3">
+                    Diseño de mecanismos fiduciarios equilibrados para propietarios de tierra e inversionistas que aportan activos a desarrollos inmobiliarios.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sector 04 -->
+          <article class="accordion-item bg-pageBg border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="sector-panel-4"
+              class="accordion-trigger w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="min-w-0">
+                <span class="inline-block px-2 py-0.5 rounded bg-techGray border border-structBorder font-serif text-xs text-doxusBlue font-semibold mb-2">04</span>
+                <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                  Beneficiarios Controladores y Familias Empresarias
+                </h3>
+                <p class="text-xs sm:text-sm text-textMuted mt-1.5 line-clamp-1">
+                  Continuidad patrimonial, gobernanza sucesoria y confidencialidad contractual lícita.
+                </p>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-techGray border border-structBorder flex items-center justify-center text-doxusBlue shrink-0 mt-1" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="sector-panel-4" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-6 sm:pb-6 pt-1 border-t border-structBorder">
+                  <p class="text-sm text-textMain leading-relaxed pt-3">
+                    Arquitectura patrimonial para personas físicas y grupos familiares que buscan delimitar responsabilidades y ordenar la toma de decisiones.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECCIÓN 3: METODOLOGÍA DE INTERVENCIÓN
+    ========================================================== -->
+    <section id="metodologia" class="py-20 sm:py-28 bg-pageBg border-b border-structBorder">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+          <div>
+            <div class="inline-flex items-center gap-2 mb-2.5">
+              <span class="w-2 h-2 bg-doxusYellow"></span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
+                03 / Proceso
+              </span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-doxusBlue">
+              Metodología de Intervención
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-textMuted">
+            Rigor senior combinado con trazabilidad operativa.
+          </p>
+        </div>
+
+        <!-- Expandable Methodology Cards -->
+        <div class="space-y-3.5">
+          <!-- Step 01 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="metodo-panel-1"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">01</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Diagnóstico Inicial de Riesgo Operativo
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Inmersión documental y emisión de un dictamen ejecutivo accionable.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="metodo-panel-1" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Análisis puntual de la operación propuesta para identificar vulnerabilidades contractuales y fiduciarias antes de ejecutar compromisos.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 02 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="metodo-panel-2"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">02</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Arquitectura y Adecuación Documental
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Redacción técnica asistida por herramientas de precisión y revisión senior.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="metodo-panel-2" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Integración de contratos y reglas fiduciarias calibradas con estándares bancarios, combinando rigor jurídico senior y eficiencia tecnológica.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Step 03 -->
+          <article class="accordion-item bg-techGray border border-structBorder rounded-lg overflow-hidden" data-open="false">
+            <button 
+              type="button" 
+              aria-expanded="false"
+              aria-controls="metodo-panel-3"
+              class="accordion-trigger w-full text-left px-5 py-5 sm:px-7 sm:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-doxusYellow">
+              <div class="flex items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                <span class="px-2.5 py-1 rounded bg-white border border-structBorder font-serif text-base sm:text-lg text-doxusBlue font-semibold shrink-0">03</span>
+                <div class="min-w-0">
+                  <h3 class="font-serif text-xl sm:text-2xl font-semibold text-doxusBlue leading-snug">
+                    Modelo Híbrido de Acompañamiento
+                  </h3>
+                  <p class="text-xs sm:text-sm text-textMuted mt-1 truncate sm:whitespace-normal">
+                    Sesiones estratégicas con el especialista y trazabilidad digital continua.
+                  </p>
+                </div>
+              </div>
+              <span class="accordion-icon-wrap w-8 h-8 rounded-full bg-white border border-structBorder flex items-center justify-center text-doxusBlue shrink-0" aria-hidden="true">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.75">
+                  <line x1="2" y1="7" x2="12" y2="7" />
+                  <line class="accordion-icon-v" x1="7" y1="2" x2="7" y2="12" />
+                </svg>
+              </span>
+            </button>
+            <div id="metodo-panel-3" class="accordion-content">
+              <div class="accordion-inner">
+                <div class="px-5 pb-6 sm:px-7 sm:pb-7 pt-1 pl-12 sm:pl-[76px] border-t border-structBorder">
+                  <p class="text-sm sm:text-[15px] text-textMain leading-relaxed max-w-3xl pt-3">
+                    Interlocución directa en decisiones críticas complementada con seguimiento estructurado, tiempos de respuesta definidos y coordinación con notarios y fiduciarios.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECCIÓN CIERRE / CTA EJECUTIVO
+    ========================================================== -->
+    <section class="py-24 sm:py-32 bg-techGray">
+      <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+        <div class="inline-flex items-center justify-center gap-2 mb-4">
+          <span class="w-2 h-2 bg-doxusYellow"></span>
+          <span class="text-[11px] font-semibold uppercase tracking-[0.22em] text-doxusBlue">
+            Consulta Ejecutiva
+          </span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-5xl font-semibold text-doxusBlue leading-[1.14] max-w-2xl mx-auto">
+          Tome decisiones patrimoniales e inmobiliarias con claridad técnica.
+        </h2>
+
+        <div class="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+          <button 
+            type="button"
+            data-open-modal="Solicitar Diagnóstico Técnico"
+            data-modal-tab="form"
+            class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium tracking-wide text-white bg-doxusBlue hover:bg-doxusBlueHover rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-doxusBlue/40">
+            Solicitar Diagnóstico Técnico
+          </button>
+
+          <button 
+            type="button"
+            data-open-modal="Agendar Consulta Ejecutiva"
+            data-modal-tab="calendar"
+            class="inline-flex items-center justify-center gap-2.5 px-7 py-4 text-sm font-semibold text-black bg-doxusYellow hover:bg-[#e5a800] rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-doxusYellow/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Agendar en Calendario
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       MODAL EJECUTIVO DE SOLICITUD / CONSULTA + GOOGLE CALENDAR
+  ========================================================== -->
+  <div 
+    id="executive-modal" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modal-title"
+    class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-doxusBlue/70 backdrop-blur-xs">
+    
+    <div id="modal-panel-container" class="modal-panel relative w-full max-w-lg bg-pageBg border border-structBorder rounded-xl shadow-2xl overflow-hidden transition-all duration-300">
+      <!-- Top Accent Bar -->
+      <div class="h-1.5 w-full bg-doxusYellow"></div>
+
+      <!-- Close Button -->
+      <button 
+        id="close-modal-btn"
+        type="button" 
+        aria-label="Cerrar ventana"
+        class="absolute top-5 right-5 z-10 w-8 h-8 rounded-full border border-structBorder bg-white flex items-center justify-center text-textMuted hover:text-doxusBlue hover:bg-techGray transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Modal Header & Mode Switcher -->
+      <div class="px-6 pt-6 sm:px-9 sm:pt-8 pb-4 border-b border-structBorder bg-techGray/60">
+        <div class="inline-flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 bg-doxusYellow"></span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-doxusBlue">
+            DOXUS &middot; Atención Directa
+          </span>
+        </div>
+        <h3 id="modal-title" class="font-serif text-2xl sm:text-3xl font-semibold text-doxusBlue pr-8">
+          Solicitar Diagnóstico Técnico
+        </h3>
+
+        <!-- Clean Segmented Switcher -->
+        <div role="tablist" aria-label="Modalidad de contacto" class="mt-4 grid grid-cols-2 gap-1.5 p-1 bg-structBorder/70 rounded-lg">
+          <button 
+            type="button" 
+            role="tab"
+            id="tab-btn-form"
+            aria-selected="true"
+            data-switch-tab="form"
+            class="py-2 px-3 text-xs font-semibold rounded-md bg-white text-doxusBlue shadow-xs transition-all">
+            Solicitud Escrita
+          </button>
+          <button 
+            type="button" 
+            role="tab"
+            id="tab-btn-calendar"
+            aria-selected="false"
+            data-switch-tab="calendar"
+            class="py-2 px-3 text-xs font-medium rounded-md text-textMuted hover:text-doxusBlue transition-all">
+            Agenda en Línea
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body: Form State -->
+      <div id="modal-form-view" class="p-6 sm:p-9 pt-5 sm:pt-6">
+        <p class="text-xs sm:text-sm text-textMuted">
+          Complete los siguientes datos para coordinar una revisión preliminar confidencial.
+        </p>
+
+        <form id="consultation-form" class="mt-5 space-y-4" novalidate>
+          <div>
+            <label for="client-name" class="block text-xs font-medium text-textMain mb-1.5">
+              Nombre Completo <span class="text-doxusYellow font-bold">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="client-name" 
+              name="name" 
+              required
+              placeholder="Ej. Arq. Alejandro Mendoza"
+              class="w-full px-3.5 py-2.5 text-sm bg-techGray border border-structBorder rounded-md text-textMain placeholder:text-textMuted/60 focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
+          </div>
+
+          <div>
+            <label for="client-company" class="block text-xs font-medium text-textMain mb-1.5">
+              Empresa o Proyecto <span class="text-doxusYellow font-bold">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="client-company" 
+              name="company" 
+              required
+              placeholder="Ej. Grupo Desarrollador / Patrimonio Familiar"
+              class="w-full px-3.5 py-2.5 text-sm bg-techGray border border-structBorder rounded-md text-textMain placeholder:text-textMuted/60 focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
+          </div>
+
+          <div>
+            <label for="client-area" class="block text-xs font-medium text-textMain mb-1.5">
+              Área de Interés <span class="text-doxusYellow font-bold">*</span>
+            </label>
+            <select 
+              id="client-area" 
+              name="area"
+              class="w-full px-3.5 py-2.5 text-sm bg-techGray border border-structBorder rounded-md text-textMain focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
+              <option value="Dictámenes de Viabilidad y Riesgo Operativo">Dictámenes de Viabilidad y Riesgo Operativo</option>
+              <option value="Estructuración y Revisión Fiduciaria">Estructuración y Revisión Fiduciaria</option>
+              <option value="Gobernanza Corporativa y Discreción Patrimonial">Gobernanza Corporativa y Discreción Patrimonial</option>
+              <option value="Planeación Patrimonial y Activos Intangibles">Planeación Patrimonial y Activos Intangibles</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="client-contact" class="block text-xs font-medium text-textMain mb-1.5">
+              Correo Electrónico o Teléfono Directo <span class="text-doxusYellow font-bold">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="client-contact" 
+              name="contact" 
+              required
+              placeholder="contacto@empresa.com / +52 (33) ..."
+              class="w-full px-3.5 py-2.5 text-sm bg-techGray border border-structBorder rounded-md text-textMain placeholder:text-textMuted/60 focus:outline-none focus:border-doxusBlue focus:bg-white transition-colors">
+          </div>
+
+          <!-- Inline Validation Message (Alerta / Error #dc2626) -->
+          <p id="form-error-msg" class="hidden text-xs text-alertRed bg-red-50 border border-alertRed/30 px-3 py-2 rounded-md">
+            Por favor complete todos los campos requeridos para procesar su solicitud.
+          </p>
+
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              class="w-full py-3.5 px-6 text-sm font-medium tracking-wide text-white bg-doxusBlue hover:bg-doxusBlueHover rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-doxusBlue/40">
+              Enviar Solicitud
+            </button>
+          </div>
+
+          <p class="text-[11px] text-center text-textMuted pt-1">
+            Comunicación protegida bajo acuerdo implícito de confidencialidad profesional.
+          </p>
+        </form>
+      </div>
+
+      <!-- Modal Body: Google Calendar Embed View -->
+      <div id="modal-calendar-view" class="hidden p-4 sm:p-6 bg-white">
+        <div class="w-full h-[460px] sm:h-[520px] rounded-lg border border-structBorder overflow-hidden bg-techGray flex flex-col items-center justify-center">
+          <!-- Enlace oficial de Agenda de Citas DOXUS -->
+          <iframe 
+            id="google-calendar-iframe"
+            src="about:blank"
+            data-calendar-url="https://calendar.google.com/calendar/appointments/schedules/AcZssZ113P04LYZ0V9OBgsIq4-Z1d_LzQCJlEfIsAq696QmI9awR_w-VnHcPc0hMyebHYG0i4Ugy2tId?gv=true"
+            style="border: 0" 
+            width="100%" 
+            height="100%" 
+            frameborder="0"
+            title="Agenda de Citas DOXUS">
+          </iframe>
+        </div>
+        <div class="mt-3 flex items-center justify-between text-[11px] text-textMuted px-1">
+          <span>Horarios sincronizados en tiempo real (Hora del Centro).</span>
+          <a id="google-calendar-external-link" href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ113P04LYZ0V9OBgsIq4-Z1d_LzQCJlEfIsAq696QmI9awR_w-VnHcPc0hMyebHYG0i4Ugy2tId?gv=true" target="_blank" rel="noopener noreferrer" class="font-semibold text-doxusBlue hover:underline">
+            Abrir en pestaña nueva &nearr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Modal Body: Executive Confirmation State -->
+      <div id="modal-success-view" class="hidden p-8 sm:p-10 text-center">
+        <div class="w-12 h-12 rounded-full bg-doxusYellow text-black flex items-center justify-center mx-auto mb-5">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <h4 class="font-serif text-2xl sm:text-3xl font-semibold text-doxusBlue">
+          Solicitud Registrada
+        </h4>
+
+        <p id="confirmation-summary" class="mt-3 text-sm text-textMain leading-relaxed max-w-sm mx-auto">
+          Hemos recibido su requerimiento. Un especialista senior de DOXUS revisará los antecedentes para coordinar la sesión inicial.
+        </p>
+
+        <div class="mt-7">
+          <button 
+            id="done-modal-btn"
+            type="button"
+            class="px-7 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-white bg-doxusBlue hover:bg-doxusBlueHover rounded-md transition-colors">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       FOOTER INSTITUCIONAL (DOXUS + AFILIACIÓN COPARMEX JALISCO)
+  ========================================================== -->
+  <footer class="bg-doxusBlue text-white border-t-2 border-doxusYellow">
+    <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-16">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10 border-b border-white/10">
+        <!-- Marca DOXUS -->
+        <div class="flex items-center gap-3.5">
+          <img 
+            src="logo-doxus-blanco.png" 
+            alt="DOXUS" 
+            class="h-10 sm:h-11 w-auto object-contain"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div style="display:none;" class="items-center gap-3.5">
+            <span class="w-9 h-9 rounded-md bg-doxusYellow text-black font-serif font-bold text-xl flex items-center justify-center shrink-0">
+              D
+            </span>
+            <div>
+              <span class="font-serif text-xl sm:text-2xl font-semibold tracking-[0.14em] text-white block leading-none">
+                DOXUS
+              </span>
+              <span class="text-[11px] uppercase tracking-[0.18em] text-textDarkMuted mt-1 block">
+                Consultoría Fiduciaria &amp; Corporativa
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Espacio Institucional COPARMEX Jalisco -->
+        <div class="flex items-center gap-4 px-4 py-3 rounded-lg bg-doxusBlueHover border border-white/10">
+          <img 
+            src="logo-coparmex-blanco.png" 
+            alt="Empresa Socia COPARMEX Jalisco" 
+            class="h-10 sm:h-12 w-auto object-contain"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div style="display:none;" class="items-center gap-3.5">
+            <span class="w-2 h-2 rounded-full bg-doxusYellow shrink-0" aria-hidden="true"></span>
+            <div class="text-left">
+              <span class="text-[10px] uppercase tracking-[0.18em] text-textDarkMuted block">
+                Membresía Institucional
+              </span>
+              <span class="text-xs sm:text-sm font-semibold tracking-wide text-white">
+                Socio Activo &middot; COPARMEX Jalisco
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer Legal y Derechos -->
+      <div class="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-[11px] sm:text-xs text-textDarkMuted leading-relaxed max-w-2xl border-l-2 border-doxusYellow pl-3.5">
+          La información contenida en este portal tiene fines exclusivamente informativos y no constituye asesoría legal vinculante hasta la formalización del diagnóstico técnico correspondiente.
+        </p>
+        <p class="text-[11px] text-textDarkMuted shrink-0">
+          &copy; <span id="footer-year">2026</span> DOXUS. Guadalajara, Jalisco.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL EJECUTIVO DE SOLICITUD / CONSULTA + GOOGLE CALENDAR
+  ========================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Expandable Cards / Accordions Logic
+      const triggers = document.querySelectorAll('.accordion-trigger');
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const card = trigger.closest('.accordion-item');
+          const isOpen = card.getAttribute('data-open') === 'true';
+          const nextState = !isOpen;
+
+          card.setAttribute('data-open', String(nextState));
+          trigger.setAttribute('aria-expanded', String(nextState));
+        });
+      });
+
+      // 2. Mobile Navigation Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileNav = document.getElementById('mobile-nav');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isHidden = mobileNav.classList.contains('hidden');
+          mobileNav.classList.toggle('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', String(isHidden));
+        });
+
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // 3. Executive Consultation Modal Logic
+      const modal = document.getElementById('executive-modal');
+      const modalPanelContainer = document.getElementById('modal-panel-container');
+      const modalTitle = document.getElementById('modal-title');
+      const areaSelect = document.getElementById('client-area');
+      const openModalBtns = document.querySelectorAll('[data-open-modal]');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const doneModalBtn = document.getElementById('done-modal-btn');
+      const formView = document.getElementById('modal-form-view');
+      const calendarView = document.getElementById('modal-calendar-view');
+      const successView = document.getElementById('modal-success-view');
+      const tabBtnForm = document.getElementById('tab-btn-form');
+      const tabBtnCalendar = document.getElementById('tab-btn-calendar');
+      const calendarIframe = document.getElementById('google-calendar-iframe');
+      const calendarExternalLink = document.getElementById('google-calendar-external-link');
+      const form = document.getElementById('consultation-form');
+      const errorMsg = document.getElementById('form-error-msg');
+      const confirmationSummary = document.getElementById('confirmation-summary');
+
+      function switchModalTab(tabName) {
+        successView.classList.add('hidden');
+        if (tabName === 'calendar') {
+          formView.classList.add('hidden');
+          calendarView.classList.remove('hidden');
+          modalPanelContainer.classList.remove('max-w-lg');
+          modalPanelContainer.classList.add('max-w-3xl');
+
+          tabBtnCalendar.classList.add('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
+          tabBtnCalendar.classList.remove('text-textMuted', 'font-medium');
+          tabBtnCalendar.setAttribute('aria-selected', 'true');
+
+          tabBtnForm.classList.remove('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
+          tabBtnForm.classList.add('text-textMuted', 'font-medium');
+          tabBtnForm.setAttribute('aria-selected', 'false');
+
+          // Lazy-load calendar URL on open
+          const calUrl = calendarIframe.getAttribute('data-calendar-url');
+          if (calUrl && calendarIframe.src === 'about:blank') {
+            calendarIframe.src = calUrl;
+            calendarExternalLink.href = calUrl;
+          }
+        } else {
+          calendarView.classList.add('hidden');
+          formView.classList.remove('hidden');
+          modalPanelContainer.classList.remove('max-w-3xl');
+          modalPanelContainer.classList.add('max-w-lg');
+
+          tabBtnForm.classList.add('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
+          tabBtnForm.classList.remove('text-textMuted', 'font-medium');
+          tabBtnForm.setAttribute('aria-selected', 'true');
+
+          tabBtnCalendar.classList.remove('bg-white', 'text-doxusBlue', 'shadow-xs', 'font-semibold');
+          tabBtnCalendar.classList.add('text-textMuted', 'font-medium');
+          tabBtnCalendar.setAttribute('aria-selected', 'false');
+        }
+      }
+
+      tabBtnForm.addEventListener('click', () => switchModalTab('form'));
+      tabBtnCalendar.addEventListener('click', () => switchModalTab('calendar'));
+
+      function openModal(titleText, preselectedArea, initialTab = 'form') {
+        if (titleText) {
+          modalTitle.textContent = titleText;
+        }
+        if (preselectedArea && areaSelect) {
+          areaSelect.value = preselectedArea;
+        }
+        errorMsg.classList.add('hidden');
+        switchModalTab(initialTab);
+
+        modal.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+
+        if (initialTab === 'form') {
+          setTimeout(() => {
+            const nameInput = document.getElementById('client-name');
+            if (nameInput) nameInput.focus();
+          }, 120);
+        }
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-visible');
+        document.body.style.overflow = '';
+      }
+
+      openModalBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const title = btn.getAttribute('data-open-modal') || 'Solicitar Diagnóstico Técnico';
+          const area = btn.getAttribute('data-area') || '';
+          const tab = btn.getAttribute('data-modal-tab') || 'form';
+          openModal(title, area, tab);
+        });
+      });
+
+      closeModalBtn.addEventListener('click', closeModal);
+      doneModalBtn.addEventListener('click', closeModal);
+
+      // Close on backdrop click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
+          closeModal();
+        }
+      });
+
+      // Form Submission & Executive Confirmation
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('client-name').value.trim();
+        const company = document.getElementById('client-company').value.trim();
+        const contact = document.getElementById('client-contact').value.trim();
+        const area = areaSelect.value;
+
+        if (!name || !company || !contact) {
+          errorMsg.classList.remove('hidden');
+          return;
+        }
+
+        errorMsg.classList.add('hidden');
+        confirmationSummary.textContent = `Estimado(a) ${name}, hemos recibido su solicitud de revisión en "${area}" para ${company}. Un especialista senior de DOXUS se pondrá en contacto a la brevedad.`;
+
+        formView.classList.add('hidden');
+        successView.classList.remove('hidden');
+        form.reset();
+      });
+    });
+  </script>
+</body>
+</html>
